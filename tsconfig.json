@@ -27,6 +27,7 @@
       "@store/*": ["store/*"],
       "@jsons/*": ["assets/json/*"],
       "@customTypes/*": ["assets/customTypes/*"],
+      "@hooks/*": ["hooks/*"],
     },
   },
   "include": ["src"],

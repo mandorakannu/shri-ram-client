@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.background__main {
+  background-image: url(https://ik.imagekit.io/egkxyv8la/Shri_Ram_College/Images/mainBg.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1676185023088);
+  height: 90vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.background__secondary {
+  background-image: url(https://ik.imagekit.io/egkxyv8la/Shri_Ram_College/Images/hands.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1676185384801);
+  height: 40vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.background__tertiary {
+  background-image: url(https://ik.imagekit.io/egkxyv8la/Shri_Ram_College/Images/hands.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1676185384801);
+  height: 90vh;
+  background-position: center;
+  background-size: cover;
+}
