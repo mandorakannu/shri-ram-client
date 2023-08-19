@@ -3,8 +3,11 @@ import { Navbar } from "@components/navigation/Navbar";
 import { Login } from "@components/pages/Login";
 import { FrontPage } from "@components/pages/main/FrontPage";
 import { Route, Routes } from "react-router-dom";
+import AOS from "aos";
+import 'aos/dist/aos.css';
 
 export function App() {
+  AOS.init({ once: true });
   return (
     <>
       <Navbar />
