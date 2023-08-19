@@ -28,6 +28,7 @@
       "@jsons/*": ["assets/json/*"],
       "@customTypes/*": ["assets/customTypes/*"],
       "@hooks/*": ["hooks/*"],
+      "@functions/*": ["assets/functions/*"],
     },
   },
   "include": ["src"],
