@@ -4,7 +4,6 @@ import { FormEvent, useState, ChangeEvent } from "react";
 export function Login() {
   const commanClass =
     "m-3 px-5 py-2 rounded bg-white outline outline-2 linkedin hover:text-white hover:bg-blue-500 w-64";
-
   const [user, setUser] = useState({
     name: "",
     password: "",
@@ -13,7 +12,7 @@ export function Login() {
   const [login, setLogin] = useState("STUDENT");
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const invalidTag = document.getElementById("invalidTag");
+    const invalidTag = document.querySelector("#invalidTag") as HTMLElement;
     if (invalidTag) {
       invalidTag.style.visibility = "hidden";
       setUser({ ...user, [e.target.name]: e.target.value });
@@ -25,7 +24,7 @@ export function Login() {
   const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (user.name === "" || user.password === "" || user.uniqueId === "") {
-      const invalidTag = document.getElementById("invalidTag");
+      const invalidTag = document.querySelector("#invalidTag") as HTMLElement;
       if (invalidTag) {
         invalidTag.style.visibility = "visible";
         invalidTag.innerText = "Fill All Fields";

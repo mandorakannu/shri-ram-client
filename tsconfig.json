@@ -29,7 +29,9 @@
       "@customTypes/*": ["assets/customTypes/*"],
       "@hooks/*": ["hooks/*"],
       "@functions/*": ["assets/functions/*"],
-    },
+      "@reducers/*": ["store/reducers/*"],
+      "@slices/*": ["store/slices/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
