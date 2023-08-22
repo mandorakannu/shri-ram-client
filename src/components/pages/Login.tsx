@@ -1,5 +1,6 @@
 import { authUser } from "@functions/auth";
 import { FormEvent, useState, ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const commanClass =
@@ -10,7 +11,7 @@ export function Login() {
     uniqueId: "",
   });
   const [login, setLogin] = useState("STUDENT");
-
+  const navigate = useNavigate();
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const invalidTag = document.querySelector("#invalidTag") as HTMLElement;
     if (invalidTag) {
@@ -21,7 +22,9 @@ export function Login() {
     }
   };
 
-  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (
+    event: FormEvent<HTMLFormElement>
+  ): Promise<void | never> => {
     event.preventDefault();
     if (user.name === "" || user.password === "" || user.uniqueId === "") {
       const invalidTag = document.querySelector("#invalidTag") as HTMLElement;
@@ -31,12 +34,25 @@ export function Login() {
       }
       return;
     } else {
-      authUser(login.toLowerCase(), user);
+      const isAuth = await authUser(login.toLowerCase(), user);
+      if (isAuth.message === "user authenticated") {
+        if (isAuth.role === "student") return navigate("/students");
+        else if (isAuth.role === "teachers") return navigate("/teachers");
+        else if (isAuth.role === "admins") return navigate("/admins");
+        else {
+          const invalidTag = document.querySelector(
+            "#invalidTag"
+          ) as HTMLElement;
+          if (invalidTag) {
+            invalidTag.style.visibility = "visible";
+            invalidTag.innerText = "Something went wrong!";
+          }
+        }
+      }
     }
   };
   return (
     <>
-      {/* Upper Panel */}
       <section className="flex justify-center items-center lg:my-6">
         <button onClick={() => setLogin("STUDENT")} className={commanClass}>
           Students
