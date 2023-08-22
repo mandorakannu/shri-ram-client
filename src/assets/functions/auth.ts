@@ -1,10 +1,17 @@
-import axios from "axios";
+import { fetchUserById } from "@reducers/userId";
 import { store } from "@store/store";
-import { addUser } from "@store/slices/user";
+import axios, { AxiosError } from "axios";
 interface IUser {
   name: string;
   password: string;
   uniqueId: string;
+}
+
+interface UrlAuth {
+  [index: string]: string;
+  student: string;
+  teacher: string;
+  admin: string;
 }
 
 const invalidCredentials = (statusCode: number) => {
@@ -20,52 +27,25 @@ const invalidCredentials = (statusCode: number) => {
   }
 };
 
-export function authUser(data: string, user: IUser) {
-  const authStudent = async () => {
-    try {
-      const res = await axios.post("/auth/students", {
-        user,
-      });
-      if (res.status === 200) {
-        store.dispatch(addUser({ id: user.uniqueId, name: user.name }));
-        window.location.href = "/students";
-      }
-      invalidCredentials(res.status);
-    } catch (error: unknown) {
-      invalidCredentials(500);
-    }
+export async function authUser(data: string, user: IUser) {
+  const urlAuth: UrlAuth = {
+    student: "/auth/students",
+    teacher: "/auth/teacher",
+    admin: "/auth/admin",
   };
-  const authTeacher = async () => {
-    try {
-      const res = await axios.post("/auth/teacher", {
-        user,
-      });
-      if (res.status === 200) {
-        store.dispatch(addUser({ id: user.uniqueId, name: user.name }));
-        window.location.href = "/teachers";
-      }
-      invalidCredentials(res.status);
-    } catch (error: unknown) {
-      invalidCredentials(500);
+  try {
+    const response = await axios.post(urlAuth[data], user);
+
+    if (response.status === 200) {
+      store.dispatch(fetchUserById(user.uniqueId));
+      return { message: "user authenticated", role: data };
+    } else {
+      invalidCredentials(response.status);
+      return { message: "user not authenticated" };
     }
-  };
-  const authAdmin = async () => {
-    try {
-      const res = await axios.post("/auth/admin", { user });
-      if (res.status === 200) {
-        store.dispatch(addUser({ id: user.uniqueId, name: user.name }));
-        window.location.href = "/admins";
-      }
-      invalidCredentials(res.status);
-    } catch (error: unknown) {
-      invalidCredentials(500);
-    }
-  };
-  if (data === "student") {
-    authStudent();
-  } else if (data === "teacher") {
-    authTeacher();
-  } else if (data === "admin") {
-    authAdmin();
+  } catch (error: unknown) {
+    const err = error as AxiosError;
+    invalidCredentials(err.response?.status as number);
+    return { message: "Internal Server Error!" };
   }
 }
