@@ -5,13 +5,13 @@ interface Comman {
   fatherName: string;
   dateOfBirth: string;
   age: number;
-  password: string;
-  uniqueId: string;
-  mobileNumber: number;
+  password?: string;
+  uniqueId?: string;
+  mobileNumber?: number;
 }
 interface IStudents extends Comman {
   className: string;
-  subjects: {
+  subjects?: {
     english: number;
     hindi: number;
     maths: number;
@@ -29,4 +29,12 @@ interface IAdmins extends Comman {}
 
 interface IUser extends IStudents, ITeachers, IAdmins {}
 
-export type { IStudents, ITeachers, IAdmins, IUser };
+interface IUpdateRecordStudents extends IStudents {
+  newName: string;
+  newMotherName: string;
+  newFatherName: string;
+  newDateOfBirth: string;
+  newAge: number;
+}
+
+export type { IStudents, ITeachers, IAdmins, IUser, IUpdateRecordStudents };
