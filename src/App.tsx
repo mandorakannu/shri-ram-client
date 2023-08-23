@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import { Students } from "@components/pages/students/Students";
 import { Result } from "@components/pages/students/Result";
 import { TimeTable } from "@components/pages/students/TimeTable";
+import { Syllabus } from "@components/pages/students/Syllabus";
 
 export function App() {
   AOS.init({ once: true });
@@ -20,6 +21,7 @@ export function App() {
         <Route path="/students" element={<Students />} />
         <Route path="/result" element={<Result />} />
         <Route path="/timeTable" element={<TimeTable />} />
+        <Route path="/syllabus" element={<Syllabus />} />
       </Routes>
       <Footer />
     </>
