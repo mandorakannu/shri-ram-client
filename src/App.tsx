@@ -17,6 +17,7 @@ import {
 import Teachers from "@components/pages/teachers/Teachers";
 import AddStudent from "@components/pages/teachers/AddStudent";
 import { StudentDetailsUpdate } from "@components/pages/teachers/StudentDetailsUpdate";
+import { Complain } from "@components/pages/shared/Complain";
 
 export function App() {
   AOS.init({ once: true });
@@ -36,6 +37,7 @@ export function App() {
         <Route path="/teachers" element={<Teachers />} />
         <Route path="/addStudent" element={<AddStudent />} />
         <Route path="/editStudentDetails" element={<StudentDetailsUpdate />} />
+        <Route path="/studentComplain" element={<Complain />} />
       </Routes>
       <Footer />
     </>
