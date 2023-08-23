@@ -14,10 +14,12 @@ import {
   StudentEditDetails,
   Students,
 } from "@components/pages/students/CommanExporter";
-import Teachers from "@components/pages/teachers/Teachers";
-import AddStudent from "@components/pages/teachers/AddStudent";
-import { StudentDetailsUpdate } from "@components/pages/teachers/StudentDetailsUpdate";
-import { Complain } from "@components/pages/shared/Complain";
+import {
+  Teachers,
+  AddStudent,
+  StudentDetailsUpdate,
+  Complain,
+} from "@components/pages/shared/CommanExporter";
 
 export function App() {
   AOS.init({ once: true });
