@@ -37,8 +37,8 @@ export function Login() {
       const isAuth = await authUser(login.toLowerCase(), user);
       if (isAuth.message === "user authenticated") {
         if (isAuth.role === "student") return navigate("/students");
-        else if (isAuth.role === "teachers") return navigate("/teachers");
-        else if (isAuth.role === "admins") return navigate("/admins");
+        else if (isAuth.role === "teacher") return navigate("/teachers");
+        else if (isAuth.role === "admin") return navigate("/admins");
         else {
           const invalidTag = document.querySelector(
             "#invalidTag"

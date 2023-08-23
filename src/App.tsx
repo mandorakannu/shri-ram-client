@@ -14,6 +14,8 @@ import {
   StudentEditDetails,
   Students,
 } from "@components/pages/students/CommanExporter";
+import Teachers from "@components/pages/teachers/Teachers";
+import AddStudent from "@components/pages/teachers/AddStudent";
 
 export function App() {
   AOS.init({ once: true });
@@ -30,6 +32,8 @@ export function App() {
         <Route path="/complain" element={<StudentComplain />} />
         <Route path="/portal" element={<FeePortal />} />
         <Route path="/editDetails" element={<StudentEditDetails />} />
+        <Route path="/teachers" element={<Teachers />} />
+        <Route path="/addStudent" element={<AddStudent />} />
       </Routes>
       <Footer />
     </>

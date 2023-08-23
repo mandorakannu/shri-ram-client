@@ -1,0 +1,20 @@
+[
+  {
+    "_id": 1,
+    "image": "addstudent.png",
+    "redirect": "/addStudent",
+    "text": "Add Student"
+  },
+  {
+    "_id": 2,
+    "image": "business-card.png",
+    "redirect": "/editStudentDetails",
+    "text": "Edit Students Details"
+  },
+  {
+    "_id": 3,
+    "image": "complain.png",
+    "redirect": "/studentComplain",
+    "text": "Check Complains"
+  }
+]
