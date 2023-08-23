@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "1",
+    "name": "Nitin Sharma",
+    "subject": "Web Developer",
+    "image": "team-1.webp"
+  },
+  {
+    "_id": "2",
+    "name": "Rakshit Sharma",
+    "subject": "Android Developer",
+    "image": "team-2.webp"
+  },
+  {
+    "_id": "3",
+    "name": "Ph.D Anna Hanzen",
+    "subject": "Data Structure",
+    "image": "team-3.webp"
+  },
+  {
+    "_id": "4",
+    "name": "Rikvik Kumar",
+    "subject": "Backend Developer",
+    "image": "team-4.webp"
+  }
+]

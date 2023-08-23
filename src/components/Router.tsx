@@ -22,6 +22,10 @@ import {
 } from "@components/pages/admins/CommanExporter";
 import { FrontPage } from "./pages/main/FrontPage";
 import { Login } from "./pages/Login";
+import { About } from "./pages/main/About";
+import { Team } from "./pages/main/Team";
+import { Contact } from "./pages/main/Contact";
+import { Courses } from "./pages/main/Courses";
 
 export function StudentRoutes() {
   return (
@@ -63,6 +67,10 @@ export function CommanRoutes() {
     <Routes>
       <Route path="/" index element={<FrontPage />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/team" element={<Team />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/courses" element={<Courses />} />
     </Routes>
   );
 }
