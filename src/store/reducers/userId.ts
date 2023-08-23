@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchUserById = createAsyncThunk(
   "users/fetchUserData",
   async (userId: string) => {
-    const response = await axios.get(`http://localhost:8000/getUser/${userId}`);
+    const response = await axios.get(`/getUser/${userId}`);
     return response.data;
   }
 );

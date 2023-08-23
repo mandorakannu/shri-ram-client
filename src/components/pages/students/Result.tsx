@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "@styles/table.css";
 export const Result = () => {
   const user = useSelector((state: RootState) => state.user);
-  const { english, hindi, maths, science, computer } = user.subjects;
+  const { english, hindi, maths, science, computer } = user.subjects as any;
   const { name, motherName, fatherName, dateOfBirth, className } = user;
   const overallMarks = (): number =>
     english + hindi + maths + science + computer;

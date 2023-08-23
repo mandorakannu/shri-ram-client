@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 import { FormEvent, useRef } from "react";
 import { RootState } from "@store/store";
