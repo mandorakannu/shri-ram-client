@@ -9,6 +9,7 @@ import { Students } from "@components/pages/students/Students";
 import { Result } from "@components/pages/students/Result";
 import { TimeTable } from "@components/pages/students/TimeTable";
 import { Syllabus } from "@components/pages/students/Syllabus";
+import { StudentComplain } from "@components/pages/students/StudentComplain";
 
 export function App() {
   AOS.init({ once: true });
@@ -22,6 +23,7 @@ export function App() {
         <Route path="/result" element={<Result />} />
         <Route path="/timeTable" element={<TimeTable />} />
         <Route path="/syllabus" element={<Syllabus />} />
+        <Route path="/complain" element={<StudentComplain />} />
       </Routes>
       <Footer />
     </>
