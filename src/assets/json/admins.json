@@ -1,0 +1,17 @@
+[
+  {
+    "link": "/addTeachers",
+    "image": "addTeacher.png",
+    "text": "Add Teachers"
+  },
+  {
+    "link": "/removeTeachers",
+    "image": "removeteacher.png",
+    "text": "Remove a Teacher"
+  },
+  {
+    "link": "/studentComplain",
+    "image": "complain.png",
+    "text": "Check Any Complain"
+  }
+]
