@@ -1,7 +1,7 @@
 import { useLinks } from "@hooks/useLinks";
 import { IKContext, IKImage } from "imagekitio-react";
 
-export default function FeePortal() {
+export function FeePortal() {
   const { urlEndPoint, images } = useLinks();
   return (
     <>

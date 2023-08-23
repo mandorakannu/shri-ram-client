@@ -5,12 +5,15 @@ import { FrontPage } from "@components/pages/main/FrontPage";
 import { Route, Routes } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Students } from "@components/pages/students/Students";
-import { Result } from "@components/pages/students/Result";
-import { TimeTable } from "@components/pages/students/TimeTable";
-import { Syllabus } from "@components/pages/students/Syllabus";
-import { StudentComplain } from "@components/pages/students/StudentComplain";
-import FeePortal from "@components/pages/students/FeePortal";
+import {
+  Result,
+  TimeTable,
+  Syllabus,
+  StudentComplain,
+  FeePortal,
+  StudentEditDetails,
+  Students,
+} from "@components/pages/students/CommanExporter";
 
 export function App() {
   AOS.init({ once: true });
@@ -26,6 +29,7 @@ export function App() {
         <Route path="/syllabus" element={<Syllabus />} />
         <Route path="/complain" element={<StudentComplain />} />
         <Route path="/portal" element={<FeePortal />} />
+        <Route path="/editDetails" element={<StudentEditDetails />} />
       </Routes>
       <Footer />
     </>
