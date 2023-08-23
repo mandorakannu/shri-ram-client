@@ -11,7 +11,13 @@ interface Comman {
 }
 interface IStudents extends Comman {
   className: string;
-  subjects: object;
+  subjects: {
+    english: number;
+    hindi: number;
+    maths: number;
+    science: number;
+    computer: number;
+  };
 }
 
 interface ITeachers extends Comman {

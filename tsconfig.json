@@ -30,7 +30,8 @@
       "@hooks/*": ["hooks/*"],
       "@functions/*": ["assets/functions/*"],
       "@reducers/*": ["store/reducers/*"],
-      "@slices/*": ["store/slices/*"]
+      "@slices/*": ["store/slices/*"],
+      "@styles/*": ["assets/styles/*"]
     }
   },
   "include": ["src"],
