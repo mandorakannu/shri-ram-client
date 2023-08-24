@@ -63,39 +63,29 @@ export function StudentDetailsUpdate() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">Id</th>
-                  <td data-label="Old">{student.uniqueId}</td>
-                  <td data-label="New">{student.uniqueId}</td>
-                </tr>
-                <tr>
                   <th scope="row">Name</th>
                   <td data-label="Old">{student.name}</td>
-                  <td data-label="New">{student.name}</td>
+                  <td data-label="New">{student.newName}</td>
                 </tr>
                 <tr>
                   <th scope="row">Father Name</th>
                   <td data-label="Old">{student.fatherName}</td>
-                  <td data-label="New">{student.fatherName}</td>
+                  <td data-label="New">{student.newFatherName}</td>
                 </tr>
                 <tr>
                   <th scope="row">Mother Name</th>
                   <td data-label="Old">{student.motherName}</td>
-                  <td data-label="New">{student.motherName}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Class</th>
-                  <td data-label="Old">{student.className}</td>
-                  <td data-label="New">{student.className}</td>
+                  <td data-label="New">{student.newMotherName}</td>
                 </tr>
                 <tr>
                   <th scope="row">Date Of Birth</th>
                   <td data-label="Old">{student.dateOfBirth}</td>
-                  <td data-label="New">{student.dateOfBirth}</td>
+                  <td data-label="New">{student.newDateOfBirth}</td>
                 </tr>
                 <tr>
                   <th scope="row">Age</th>
                   <td data-label="Old">{student.age}</td>
-                  <td data-label="New">{student.age}</td>
+                  <td data-label="New">{student.newAge}</td>
                 </tr>
               </tbody>
             </table>

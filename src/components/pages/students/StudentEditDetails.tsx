@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { RootState } from "@store/store";
+import { useSelector } from "react-redux";
 import {
   showAge,
   showDateOfBirth,
@@ -9,6 +11,7 @@ import {
 } from "@functions/showStudentEditFields";
 
 export function StudentEditDetails() {
+  const user = useSelector((state: RootState) => state.user);
   const [submit, setSubmitBtn] = useState("Submit");
   const [studentDetails, setStudentDetails] = useState({
     name: "",
@@ -17,6 +20,7 @@ export function StudentEditDetails() {
     age: "",
     dateOfBirth: "",
   });
+  const { name, motherName, fatherName, age, dateOfBirth } = studentDetails;
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setStudentDetails({ ...studentDetails, [name]: value });
@@ -61,37 +65,23 @@ export function StudentEditDetails() {
       submitButton.classList.add("hidden");
     }
   };
-  const { name, motherName, fatherName, age, dateOfBirth } = studentDetails;
-  const [newStudentName, newFatherName, newMotherName, newAge, newDateOfBirth] =
-    [name, fatherName, motherName, age, dateOfBirth];
   const submitRequest = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const [
-      oldStudentName,
-      oldMotherName,
-      oldFatherName,
-      oldAge,
-      oldDateOfBirth,
-    ] = [name, motherName, fatherName, age, dateOfBirth];
+    const { name, motherName, fatherName, age, dateOfBirth } = studentDetails;
     try {
-      if (
-        newStudentName ||
-        newMotherName ||
-        newFatherName ||
-        newAge ||
-        newDateOfBirth
-      ) {
+      if (name || motherName || fatherName || age || dateOfBirth) {
         const res = await axios.post("/api/studentUpdateDetails", {
-          oldStudentName,
-          oldFatherName,
-          oldMotherName,
-          oldAge,
-          oldDateOfBirth,
-          newStudentName,
-          newMotherName,
-          newFatherName,
-          newAge,
-          newDateOfBirth,
+          uniqueId: "root",
+          name,
+          motherName,
+          fatherName,
+          age,
+          dateOfBirth,
+          oldName: user.name,
+          oldMotherName: user.motherName,
+          oldFatherName: user.fatherName,
+          oldAge: user.age,
+          oldDateOfBirth: user.dateOfBirth,
         });
         if (!res || res.status !== 200) {
           alert("Something went wrong!");
@@ -118,129 +108,131 @@ export function StudentEditDetails() {
         <h1 className="text-center font-sans my-5">
           Select the field you wants to updates.
         </h1>
-        <div className="max-sm:grid max-sm:place-content-center flex justify-evenly">
-          <form method="post" onSubmit={submitRequest}>
-            <input
-              type="checkbox"
-              name="studentName"
-              id="studentNameCheck"
-              className="accent-green-300"
-              onClick={() => {
-                showStudentName();
-                showSubmitButton();
-              }}
-            />
-            <span className="mx-1">Name</span>
-          </form>
-          <div className="">
-            <input
-              type="checkbox"
-              name="studentName"
-              id="motherNameCheck"
-              className="accent-green-300"
-              onClick={() => {
-                showMotherName();
-                showSubmitButton();
-              }}
-            />
-            <span className="mx-1 ">Mother name</span>
+        <form method="post" onSubmit={submitRequest}>
+          <div className="max-sm:grid max-sm:place-content-center flex justify-evenly">
+            <div>
+              <input
+                type="checkbox"
+                name="studentName"
+                id="studentNameCheck"
+                className="accent-green-300"
+                onClick={() => {
+                  showStudentName();
+                  showSubmitButton();
+                }}
+              />
+              <span className="mx-1">Name</span>
+            </div>
+            <div className="">
+              <input
+                type="checkbox"
+                name="studentName"
+                id="motherNameCheck"
+                className="accent-green-300"
+                onClick={() => {
+                  showMotherName();
+                  showSubmitButton();
+                }}
+              />
+              <span className="mx-1 ">Mother name</span>
+            </div>
+            <div className="">
+              <input
+                type="checkbox"
+                name="studentName"
+                id="fatherNameCheck"
+                className="accent-green-300"
+                onClick={() => {
+                  showFatherName();
+                  showSubmitButton();
+                }}
+              />
+              <span className="mx-1 ">Father name</span>
+            </div>
+            <div className="">
+              <input
+                type="checkbox"
+                name="studentName"
+                id="ageCheck"
+                className="accent-green-300"
+                onClick={() => {
+                  showAge();
+                  showSubmitButton();
+                }}
+              />
+              <span className="mx-1 ">Age</span>
+            </div>
+            <div className="">
+              <input
+                type="checkbox"
+                name="studentName"
+                id="dobCheck"
+                className="accent-green-300"
+                onClick={() => {
+                  showDateOfBirth();
+                  showSubmitButton();
+                }}
+              />
+              <span className="mx-1">Date Of Birth</span>
+            </div>
           </div>
-          <div className="">
+          <div className="flex justify-center flex-col max-sm:justify-center items-center lg:mt-6 gap-6 my-6">
             <input
-              type="checkbox"
-              name="studentName"
-              id="fatherNameCheck"
-              className="accent-green-300"
-              onClick={() => {
-                showFatherName();
-                showSubmitButton();
-              }}
+              type="text"
+              name="name"
+              id="studentNameUpdate"
+              placeholder="Enter your name"
+              className="hidden px-3 py-2"
+              value={name}
+              onChange={onChangeHandler}
             />
-            <span className="mx-1 ">Father name</span>
-          </div>
-          <div className="">
             <input
-              type="checkbox"
-              name="studentName"
-              id="ageCheck"
-              className="accent-green-300"
-              onClick={() => {
-                showAge();
-                showSubmitButton();
-              }}
+              type="text"
+              name="motherName"
+              id="motherNameUpdate"
+              placeholder="Enter your mother name"
+              className="hidden px-3 py-2"
+              value={motherName}
+              onChange={onChangeHandler}
             />
-            <span className="mx-1 ">Age</span>
-          </div>
-          <div className="">
             <input
-              type="checkbox"
-              name="studentName"
-              id="dobCheck"
-              className="accent-green-300"
-              onClick={() => {
-                showDateOfBirth();
-                showSubmitButton();
-              }}
+              type="text"
+              name="fatherName"
+              id="fatherNameUpdate"
+              placeholder="Enter your father name"
+              className="hidden px-3 py-2"
+              value={fatherName}
+              onChange={onChangeHandler}
             />
-            <span className="mx-1">Date Of Birth</span>
+            <input
+              type="text"
+              name="age"
+              id="ageUpdate"
+              placeholder="Enter your age"
+              className="hidden px-3 py-2"
+              value={age}
+              onChange={onChangeHandler}
+            />
+            <input
+              type="text"
+              name="dateOfBirth"
+              id="dobUpdate"
+              placeholder="Enter your date of birth"
+              className="hidden px-3 py-2"
+              value={dateOfBirth}
+              onChange={onChangeHandler}
+            />
           </div>
-        </div>
-        <div className="flex justify-center flex-col max-sm:justify-center items-center lg:mt-6 gap-6 my-6">
-          <input
-            type="text"
-            name="name"
-            id="studentNameUpdate"
-            placeholder="Enter your name"
-            className="hidden px-3 py-2"
-            value={name}
-            onChange={onChangeHandler}
-          />
-          <input
-            type="text"
-            name="motherName"
-            id="motherNameUpdate"
-            placeholder="Enter your mother name"
-            className="hidden px-3 py-2"
-            value={motherName}
-            onChange={onChangeHandler}
-          />
-          <input
-            type="text"
-            name="fatherName"
-            id="fatherNameUpdate"
-            placeholder="Enter your father name"
-            className="hidden px-3 py-2"
-            value={fatherName}
-            onChange={onChangeHandler}
-          />
-          <input
-            type="text"
-            name="age"
-            id="ageUpdate"
-            placeholder="Enter your age"
-            className="hidden px-3 py-2"
-            value={age}
-            onChange={onChangeHandler}
-          />
-          <input
-            type="text"
-            name="dateOfBirth"
-            id="dobUpdate"
-            placeholder="Enter your date of birth"
-            className="hidden px-3 py-2"
-            value={dateOfBirth}
-            onChange={onChangeHandler}
-          />
-        </div>
-        <div className="flex flex-row justify-center items-center">
-          <button
-            type="submit"
-            className="hidden border-2 my-3 border-blue-500 bg-blue-400 text-white px-1 py-2 rounded w-20"
-            id="submitButton"
-          >
-            {submit}
-          </button>
-        </div>
+          <div className="flex flex-row justify-center items-center">
+            <button
+              type="submit"
+              className="hidden border-2 my-3 border-blue-500 bg-blue-400 text-white px-1 py-2 rounded w-20"
+              id="submitButton"
+            >
+              {submit}
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );
