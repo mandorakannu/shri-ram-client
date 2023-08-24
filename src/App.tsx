@@ -8,16 +8,18 @@ import {
   AdminRoutes,
   CommanRoutes,
 } from "@components/Router";
+import { Hambar } from "@components/navigation/Hambar";
 
 export function App() {
   AOS.init({ once: true });
   return (
     <>
+      <Hambar />
       <Navbar />
-        <CommanRoutes />
-        <StudentRoutes />
-        <TeacherRoutes />
-        <AdminRoutes />
+      <CommanRoutes />
+      <StudentRoutes />
+      <TeacherRoutes />
+      <AdminRoutes />
       <Footer />
     </>
   );
