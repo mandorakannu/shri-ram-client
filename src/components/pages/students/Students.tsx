@@ -14,7 +14,7 @@ export const Students = () => {
         <span className="cursor-default">{user.name}</span>
       </h1>
       <IKContext urlEndpoint={urlEndPoint}>
-        <div className="flex justify-evenly items-center flex-warp flex-shrink flex-col sm:flex-row h-[80vh] gap-3 my-5">
+        <div className="flex justify-evenly items-center flex-warp flex-shrink flex-col sm:flex-row gap-3 my-5 md:py-40">
           {students.map((item) => (
             <div key={item._id} className="hover:shadow-md shadow-black p-10">
               <Link
