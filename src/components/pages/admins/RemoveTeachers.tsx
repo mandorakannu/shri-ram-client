@@ -36,6 +36,7 @@ export function RemoveTeachers() {
         `/admin/deleteTeacher/${teacher.uniqueId}`
       );
       if (res.status === 200) {
+        setLoading(true);
         alert("Teacher deleted successfully");
       } else {
         alert("Something went wrong");
