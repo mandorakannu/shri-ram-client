@@ -54,9 +54,10 @@ export default function AddStudent() {
     } else {
       try {
         const res = await axios.post("/api/addStudent", userData);
-        if (res.data.message === "Student Already Exists") {
+        if (res.status === 400) {
           window.alert("Invalid Registration, Student Already Exists!");
         } else {
+          console.log(res.data);
           alert(
             `Kindly share this password and uniqueId to the respective student. This will not generate again! \n\n Password: ${res.data.password}\n UniqueId: ${res.data.uniqueId}`
           );

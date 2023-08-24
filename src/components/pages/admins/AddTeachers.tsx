@@ -40,7 +40,7 @@ export function AddTeachers() {
         SubjectProfile,
         mobileNumber,
       });
-      if (res.status === 201) {
+      if (res.status === 200 || res.status === 201) {
         alert("Teacher Added Successfully");
         alert(
           ` ${name}=>  This is your Teacher unique Id: ${res.data.uniqueId} and Password: ${res.data.password} \n Please save this information, this will not be shown again or generated again!`
