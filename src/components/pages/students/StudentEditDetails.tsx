@@ -188,7 +188,7 @@ export function StudentEditDetails() {
         <div className="flex justify-center flex-col max-sm:justify-center items-center lg:mt-6 gap-6 my-6">
           <input
             type="text"
-            name="studentName"
+            name="name"
             id="studentNameUpdate"
             placeholder="Enter your name"
             className="hidden px-3 py-2"
