@@ -6,9 +6,6 @@ export const Hambar = () => {
   const showDropDownMenu = () => {
     const dropDownMenu = document.querySelector("#dropDownMenu");
     dropDownMenu?.classList.toggle("hidden");
-    if (!dropDownMenu?.classList.contains("hidden"))
-      document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "auto";
   };
   const hideDropDownMenu = () => {
     const dropDownMenu = document.querySelector("#dropDownMenu");
