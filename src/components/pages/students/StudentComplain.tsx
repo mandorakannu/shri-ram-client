@@ -18,8 +18,7 @@ export function StudentComplain() {
         name: user.name,
         className: user.className,
       });
-      const { result } = response.data;
-      if (result === "success") {
+      if (response.status === 200 || response.status === 201) {
         alert("Complain sent successfully");
         messageRef.current!.value = "";
       } else {
