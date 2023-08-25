@@ -1,4 +1,8 @@
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
+
 export function TimeTable() {
+  if (!useVerifyUser()) return <Auth />;
   return (
     <table className="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100% my-40">
       <thead>

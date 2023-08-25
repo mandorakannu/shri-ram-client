@@ -1,8 +1,11 @@
 import { useLinks } from "@hooks/useLinks";
 import { IKContext, IKImage } from "imagekitio-react";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 export function FeePortal() {
   const { urlEndPoint, images } = useLinks();
+  if (!useVerifyUser()) return <Auth />;
   return (
     <>
       <h1 className="font-semibold text-2xl text-center my-5">Fee Portal</h1>

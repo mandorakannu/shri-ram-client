@@ -1,9 +1,22 @@
 import { RootState } from "@store/store";
 import { useSelector } from "react-redux";
 import "@styles/table.css";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
+
+interface Subjects {
+  english: number;
+  hindi: number;
+  maths: number;
+  science: number;
+  computer: number;
+}
+
 export const Result = () => {
+  const isUser = useVerifyUser();
   const user = useSelector((state: RootState) => state.user);
-  const { english, hindi, maths, science, computer } = user.subjects as any;
+  if (!isUser) return <Auth />;
+  const { english, hindi, maths, science, computer } = user.subjects as Subjects;
   const { name, motherName, fatherName, dateOfBirth, className } = user;
   const overallMarks = (): number =>
     english + hindi + maths + science + computer;
@@ -12,37 +25,33 @@ export const Result = () => {
     return marks >= 90 ? "Excellent" : "Very Good";
   };
   return (
-    <>
-      {user && (
-        <table className="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100% my-5">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">{name}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Mother Name</th>
-              <td>{motherName}</td>
-            </tr>
-            <tr>
-              <th scope="row">Father Name</th>
-              <td>{fatherName}</td>
-            </tr>
-            <tr>
-              <th scope="row">Class</th>
-              <td>{className}</td>
-            </tr>
-            <tr>
-              <th scope="row">DOB</th>
-              <td>{dateOfBirth}</td>
-            </tr>
-          </tbody>
-        </table>
-      )}
-      {user.subjects && (
         <>
+          <table className="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100% my-5">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">{name}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Mother Name</th>
+                <td>{motherName}</td>
+              </tr>
+              <tr>
+                <th scope="row">Father Name</th>
+                <td>{fatherName}</td>
+              </tr>
+              <tr>
+                <th scope="row">Class</th>
+                <td>{className}</td>
+              </tr>
+              <tr>
+                <th scope="row">DOB</th>
+                <td>{dateOfBirth}</td>
+              </tr>
+            </tbody>
+          </table>
           <table className="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100% my-5">
             <thead>
               <tr>
@@ -89,12 +98,10 @@ export const Result = () => {
             <tbody>
               <tr>
                 <th scope="row">Result</th>
-                <td>{overallMarks() >= 33/100 ? "Pass": "Fail"}</td>
+                <td>{overallMarks() >= 33 / 100 ? "Pass" : "Fail"}</td>
               </tr>
             </tbody>
           </table>
         </>
-      )}
-    </>
   );
 };

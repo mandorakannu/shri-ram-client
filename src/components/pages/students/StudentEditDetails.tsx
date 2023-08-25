@@ -9,6 +9,8 @@ import {
   showMotherName,
   showStudentName,
 } from "@functions/showStudentEditFields";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 export function StudentEditDetails() {
   const user = useSelector((state: RootState) => state.user);
@@ -20,6 +22,7 @@ export function StudentEditDetails() {
     age: "",
     dateOfBirth: "",
   });
+  if (!useVerifyUser()) return <Auth />;
   const { name, motherName, fatherName, age, dateOfBirth } = studentDetails;
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -2,10 +2,13 @@ import axios from "axios";
 import { FormEvent, useRef } from "react";
 import { RootState } from "@store/store";
 import { useSelector } from "react-redux";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 export function StudentComplain() {
   const user = useSelector((state: RootState) => state.user);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  if(!useVerifyUser()) return <Auth />;
   const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const message = messageRef.current?.value;
