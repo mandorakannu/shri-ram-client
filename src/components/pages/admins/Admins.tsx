@@ -4,9 +4,13 @@ import admins from "@jsons/admins.json";
 import { Link } from "react-router-dom";
 import { IKContext, IKImage } from "imagekitio-react";
 import { useLinks } from "@hooks/useLinks";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
+
 export function Admins() {
   const { urlEndPoint, path } = useLinks();
   const user = useSelector((state: RootState) => state.user);
+  if (!useVerifyUser()) return <Auth />;
   return (
     <>
       <h1 className="text-center my-10">

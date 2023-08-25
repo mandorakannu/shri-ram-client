@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 export function AddTeachers() {
   const [teacher, setTeacher] = useState({
@@ -12,6 +14,7 @@ export function AddTeachers() {
     SubjectProfile: "",
     mobileNumber: "",
   });
+  if(!useVerifyUser()) return <Auth />;
   //   onChangeHandler function is used to set the value of the input field to the state
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) =>
     setTeacher({ ...teacher, [event.target.name]: event.target.value });

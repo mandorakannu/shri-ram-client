@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, ChangeEvent } from "react";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 export function RemoveTeachers() {
   const [teacher, setTeacher] = useState({
@@ -13,7 +15,7 @@ export function RemoveTeachers() {
   const [loading, setLoading] = useState(true);
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
     setTeacher({ ...teacher, [e.target.name]: e.target.value });
-
+  if(!useVerifyUser()) return <Auth />;
   const findTeacherDetails = async () => {
     try {
       const res = await axios.get(
