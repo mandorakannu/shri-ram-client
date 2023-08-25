@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "@styles/table.css";
 import { IUpdateRecordStudents } from "@customTypes/IUser";
 import axios from "axios";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 export function StudentDetailsUpdate() {
   const fetchAllStudentsDetails = async () => {
@@ -16,7 +18,7 @@ export function StudentDetailsUpdate() {
       setStudentData([]);
     };
   }, []);
-
+  if(!useVerifyUser()) return <Auth />;
   const onSubmitHandler = async (uniqueId: string) => {
     const findStudent = studentData.find(
       (student) => student.uniqueId === uniqueId

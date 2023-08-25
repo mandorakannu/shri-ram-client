@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "@styles/table.css";
 import axios from "axios";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 interface Complain {
   name: string;
@@ -20,7 +22,7 @@ export function Complain() {
       setComplainData([]);
     };
   }, []);
-
+  if(!useVerifyUser()) return <Auth />;
   return (
     <>
       {complainData &&

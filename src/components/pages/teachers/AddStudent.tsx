@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
 
 export default function AddStudent() {
   const [userData, setUserData] = useState({
@@ -11,6 +13,7 @@ export default function AddStudent() {
     mobileNumber: "",
     className: "",
   });
+ if(!useVerifyUser()) return <Auth />;
   const classes = [
     "1st",
     "2nd",

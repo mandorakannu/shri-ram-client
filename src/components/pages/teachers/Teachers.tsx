@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { RootState } from "@store/store";
 import { useSelector } from "react-redux";
 import teachers from "@jsons/teachers.json";
+import { useVerifyUser } from "@hooks/useVerifyUser";
+import { Auth } from "@components/Auth";
+
 export default function Teachers() {
   const { urlEndPoint, path } = useLinks();
   const user = useSelector((state: RootState) => state.user);
+  if(!useVerifyUser()) return <Auth />;
   return (
     <>
       <h1 className="text-center my-10">
