@@ -4,6 +4,7 @@ import { Logo } from "./Logo";
 import { useRef } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "@store/store";
+import { clearUser } from "@functions/clearUser";
 
 export const Hambar = () => {
   const username = useSelector((state: RootState) => state.user.name);
@@ -59,16 +60,27 @@ export const Hambar = () => {
           </li>
           {username && (
             <li className="font-medium my-2 border-b border-black w-full text-right py-4">
-              <NavLink className=" bg-white px-6 py-2 text-black rounded" to="/profile">
+              <NavLink
+                className=" bg-white px-6 py-2 text-black rounded"
+                to="/profile"
+              >
                 Your Profile
               </NavLink>
             </li>
           )}
-          <li className="font-medium my-2 bg-red-500 rounded px-6 py-2">
-            <Link className="py-1 px-3" to="/login">
-              Login
-            </Link>
-          </li>
+          {!username ? (
+            <li className="font-medium my-2 bg-red-500 rounded px-6 py-2">
+              <Link className="py-1 px-3" to="/login">
+                Login
+              </Link>
+            </li>
+          ) : (
+            <li className="font-medium my-2 bg-red-500 rounded px-6 py-2">
+              <button className="py-1 px-3" onClick={clearUser}>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </>

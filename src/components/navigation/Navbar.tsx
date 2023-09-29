@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Logo } from "./Logo";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/store";
+import { clearUser } from "@functions/clearUser";
 export const Navbar = () => {
   const username = useSelector((state: RootState) => state.user.name);
   console.log("navbar", username);
@@ -15,11 +16,27 @@ export const Navbar = () => {
           <NavLink to="/team">Team</NavLink>
           <NavLink to="/contact">Contact</NavLink>
           <NavLink to="/courses">All Courses</NavLink>
-          {username && <NavLink to="/profile" className="bg-white px-6 py-2 text-black rounded">Your Profile</NavLink>}
+          {username && (
+            <NavLink
+              to="/profile"
+              className="bg-white px-6 py-2 text-black rounded"
+            >
+              Your Profile
+            </NavLink>
+          )}
         </nav>
-        <Link className="bg-white px-3 py-1 rounded text-black" to="/login">
-          Login
-        </Link>
+        {!username ? (
+          <Link className="bg-white px-3 py-1 rounded text-black" to="/login">
+            Login
+          </Link>
+        ) : (
+          <button
+            className="bg-white px-3 py-1 rounded text-black"
+            onClick={clearUser}
+          >
+            Logout
+          </button>
+        )}
       </header>
     </>
   );
