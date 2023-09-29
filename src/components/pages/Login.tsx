@@ -1,7 +1,7 @@
 import { authUser } from "@functions/auth";
-import { FormEvent, useState, ChangeEvent } from "react";
+import { FormEvent, useState, ChangeEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Loader } from "@components/Loader";
 export function Login() {
   const commanClass =
     "m-3 px-5 py-2 rounded bg-white outline outline-2 linkedin hover:text-white hover:bg-blue-500 w-64";
@@ -10,7 +10,9 @@ export function Login() {
     password: "",
     uniqueId: "",
   });
+  const invalidTagRef = useRef<HTMLHeadingElement>(null);
   const [login, setLogin] = useState("STUDENT");
+  const [loader, setLoader] = useState<JSX.Element | "Login">("Login");
   const navigate = useNavigate();
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const invalidTag = document.querySelector("#invalidTag") as HTMLElement;
@@ -27,28 +29,27 @@ export function Login() {
   ): Promise<void | never> => {
     event.preventDefault();
     if (user.name === "" || user.password === "" || user.uniqueId === "") {
-      const invalidTag = document.querySelector("#invalidTag") as HTMLElement;
-      if (invalidTag) {
-        invalidTag.style.visibility = "visible";
-        invalidTag.innerText = "Fill All Fields";
+      if (invalidTagRef.current) {
+        invalidTagRef.current.style.visibility = "visible";
+        invalidTagRef.current.innerText = "Fill All Fields";
       }
       return;
     } else {
+      setLoader(<Loader barColor="blue" wrapperStyle={{ scale: "2.0" }} />);
       const isAuth = await authUser(login.toLowerCase(), user);
       if (isAuth.message === "user authenticated") {
         if (isAuth.role === "student") return navigate("/students");
         else if (isAuth.role === "teacher") return navigate("/teachers");
         else if (isAuth.role === "admin") return navigate("/admins");
         else {
-          const invalidTag = document.querySelector(
-            "#invalidTag"
-          ) as HTMLElement;
-          if (invalidTag) {
-            invalidTag.style.visibility = "visible";
-            invalidTag.innerText = "Something went wrong!";
+          if (invalidTagRef.current) {
+            invalidTagRef.current.style.visibility = "visible";
+            invalidTagRef.current.innerText = "Fill All Fields";
+            invalidTagRef.current.innerText = "Something went wrong!";
           }
         }
       }
+      setLoader("Login");
     }
   };
   return (
@@ -74,6 +75,7 @@ export function Login() {
         <h2
           className="red bg-red-100 w-64 text-center py-1 my-1 rounded invisible"
           id="invalidTag"
+          ref={invalidTagRef}
         >
           Invalid Credentials
         </h2>
@@ -104,9 +106,9 @@ export function Login() {
 
         <button
           type="submit"
-          className="bg-white outline outline-2 text-center linkedin hover:text-white hover:bg-blue-500 w-64 py-2 rounded my-4 cursor-pointer"
+          className="bg-white outline outline-2 text-center hover:shadow-md shadow hover:outline-1 w-64 py-2 rounded my-4 cursor-pointer flex justify-center items-center transition-all delay-75 ease-in-out"
         >
-          Login
+          {loader}
         </button>
       </form>
     </>
