@@ -13,6 +13,7 @@ import {
   AddStudent,
   StudentDetailsUpdate,
   Complain,
+  UserProfile,
 } from "@components/pages/shared/CommanExporter";
 
 import {
@@ -71,6 +72,7 @@ export function CommanRoutes() {
       <Route path="/team" element={<Team />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/courses" element={<Courses />} />
+      <Route path="/profile" element={<UserProfile />} />
     </Routes>
   );
 }

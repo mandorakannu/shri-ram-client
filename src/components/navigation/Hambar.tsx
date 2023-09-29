@@ -1,15 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Logo } from "./Logo";
+import { useRef } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { RootState } from "@store/store";
 
 export const Hambar = () => {
+  const username = useSelector((state: RootState) => state.user.name);
+  const dropDownMenu = useRef<HTMLDivElement>(null);
   const showDropDownMenu = () => {
-    const dropDownMenu = document.querySelector("#dropDownMenu");
-    dropDownMenu?.classList.toggle("hidden");
+    if (dropDownMenu?.current) dropDownMenu?.current.classList.toggle("hidden");
   };
   const hideDropDownMenu = () => {
-    const dropDownMenu = document.querySelector("#dropDownMenu");
-    dropDownMenu?.classList.add("hidden");
+    if (dropDownMenu?.current) dropDownMenu?.current!.classList.add("hidden");
   };
 
   return (
@@ -28,6 +31,7 @@ export const Hambar = () => {
       <div
         className="hidden text-white bg-blue-300 sticky top-16 lg:hidden z-50"
         id="dropDownMenu"
+        ref={dropDownMenu}
       >
         <ul
           onClick={hideDropDownMenu}
@@ -53,6 +57,13 @@ export const Hambar = () => {
               All Courses
             </NavLink>
           </li>
+          {username && (
+            <li className="font-medium my-2 border-b border-black w-full text-right py-4">
+              <NavLink className=" bg-white px-6 py-2 text-black rounded" to="/profile">
+                Your Profile
+              </NavLink>
+            </li>
+          )}
           <li className="font-medium my-2 bg-red-500 rounded px-6 py-2">
             <Link className="py-1 px-3" to="/login">
               Login
