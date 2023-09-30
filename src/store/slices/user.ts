@@ -1,20 +1,13 @@
 import { IUser } from "@customTypes/IUser";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { fetchUserById } from "@reducers/userId";
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {} as IUser,
   reducers: {
-    addUser: (state: any, action: PayloadAction<IUser>) => {
-      state.id = action.payload.id;
-      state.name = action.payload.name;
-    },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchUserById.fulfilled, (state, action) => {
-      state.id = action.payload.uniqueId;
+    addUser: (state: IUser, action: PayloadAction<IUser>) => {
+      state.uniqueId = action.payload.uniqueId;
       state.name = action.payload.name;
       state.motherName = action.payload.motherName;
       state.fatherName = action.payload.fatherName;
@@ -31,7 +24,7 @@ export const userSlice = createSlice({
       } else {
         return;
       }
-    });
+    },
   },
 });
 

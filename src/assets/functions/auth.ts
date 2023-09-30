@@ -1,4 +1,4 @@
-import { fetchUserById } from "@reducers/userId";
+import { addUser } from "@store/slices/user";
 import { store } from "@store/store";
 import axios, { AxiosError } from "axios";
 interface IUser {
@@ -37,7 +37,7 @@ export async function authUser(data: string, user: IUser) {
     const response = await axios.post(urlAuth[data], user);
 
     if (response.status === 200) {
-      store.dispatch(fetchUserById(user.uniqueId));
+      store.dispatch(addUser(response.data));
       return { message: "user authenticated", role: data };
     } else {
       invalidCredentials(response.status);

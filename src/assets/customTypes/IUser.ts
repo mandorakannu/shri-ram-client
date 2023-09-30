@@ -8,7 +8,7 @@ interface Comman {
   password?: string;
   uniqueId?: string;
   mobileNumber?: number;
-  role: string;
+  role: "student" | "teacher" | "admin";
 }
 interface IStudents extends Comman {
   className: string;
