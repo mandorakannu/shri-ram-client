@@ -1,20 +1,35 @@
 import axios from "axios";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useVerifyUser } from "@hooks/useVerifyUser";
 import { Auth } from "@components/Auth";
+import { ITeachers } from "@customTypes/IUser";
+import { DialogModel } from "@components/ui/UserCreateModel";
+import { UserCreateContext } from "context/UserCreateContext";
 
 export function AddTeachers() {
-  const [teacher, setTeacher] = useState({
+  const modelContext = useContext(UserCreateContext);
+  console.log("value", modelContext?.value);
+  const [teacher, setTeacher] = useState<ITeachers>({
     name: "",
     motherName: "",
     fatherName: "",
     qualification: "",
     dateOfBirth: "",
-    age: "",
+    age: 0,
     SubjectProfile: "",
-    mobileNumber: "",
+    mobileNumber: 0,
+    role: "teacher",
   });
-  if(!useVerifyUser()) return <Auth />;
+  const [openDialog, setOpenDialog] = useState({
+    title: "",
+    description: "",
+    isOpen: false,
+  });
+  const [userData, setUserData] = useState({
+    uniqueId: "",
+    password: "",
+  });
+  if (!useVerifyUser()) return <Auth />;
   //   onChangeHandler function is used to set the value of the input field to the state
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) =>
     setTeacher({ ...teacher, [event.target.name]: event.target.value });
@@ -43,20 +58,44 @@ export function AddTeachers() {
         SubjectProfile,
         mobileNumber,
       });
+      modelContext?.isModelOpenFxn();
       if (res.status === 200 || res.status === 201) {
-        alert("Teacher Added Successfully");
-        alert(
-          ` ${name}=>  This is your Teacher unique Id: ${res.data.uniqueId} and Password: ${res.data.password} \n Please save this information, this will not be shown again or generated again!`
-        );
+        setUserData({
+          uniqueId: res.data.uniqueId,
+          password: res.data.password,
+        });
+        setOpenDialog({
+          title: "Teacher Added Successfully",
+          description:
+            "Please save this information, this will not be shown again or generated again!",
+          isOpen: modelContext?.value as boolean,
+        });
       } else {
-        alert("Teacher already exist");
+        setOpenDialog({
+          title: "HTTP CODE: 400",
+          description: "Teacher Already Exist",
+          isOpen: modelContext?.value as boolean,
+        });
       }
     } catch (err) {
-      alert("Server isn't responding, Kindly try again later");
+      setOpenDialog({
+        title: "HTTP CODE: 500",
+        description: "Server isn't responding, Kindly try again later",
+        isOpen: modelContext?.value as boolean,
+      });
     }
   };
   return (
     <>
+      {modelContext?.value && (
+        <DialogModel
+          title={openDialog.title}
+          description={openDialog.description}
+          isOpen={!openDialog.isOpen}
+          uniqueId={userData.uniqueId}
+          password={userData.password}
+        />
+      )}
       <h1 className="text-center font-semibold text-2xl my-5">Add Teachers</h1>
       <div className="h-sceeen">
         <div className="flex flex-col  items-center justify-center h-full">
