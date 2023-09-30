@@ -7,7 +7,7 @@ import { RootState } from "@store/store";
 import { clearUser } from "@functions/clearUser";
 
 export const Hambar = () => {
-  const username = useSelector((state: RootState) => state.user.name);
+  const user = useSelector((state: RootState) => state.user);
   const dropDownMenu = useRef<HTMLDivElement>(null);
   const showDropDownMenu = () => {
     if (dropDownMenu?.current) dropDownMenu?.current.classList.toggle("hidden");
@@ -58,17 +58,25 @@ export const Hambar = () => {
               All Courses
             </NavLink>
           </li>
-          {username && (
-            <li className="font-medium my-2 border-b border-black w-full text-right py-4">
-              <NavLink
-                className=" bg-white px-6 py-2 text-black rounded"
-                to="/profile"
-              >
-                Your Profile
-              </NavLink>
-            </li>
+          {user.name && (
+            <>
+              <li className="font-medium my-2 border-b border-black w-full text-right py-4">
+                <NavLink to={user.role + "s"}>
+                  Dashboard (
+                  {user.role.charAt(0).toUpperCase() + user.role.slice(1)})
+                </NavLink>
+              </li>
+              <li className="font-medium my-2 border-b border-black w-full text-right py-4">
+                <NavLink
+                  className=" bg-white px-6 py-2 text-black rounded"
+                  to="/profile"
+                >
+                  Your Profile
+                </NavLink>
+              </li>
+            </>
           )}
-          {!username ? (
+          {!user.name ? (
             <li className="font-medium my-2 bg-red-500 rounded px-6 py-2">
               <Link className="py-1 px-3" to="/login">
                 Login

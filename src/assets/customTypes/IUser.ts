@@ -8,6 +8,7 @@ interface Comman {
   password?: string;
   uniqueId?: string;
   mobileNumber?: number;
+  role: string;
 }
 interface IStudents extends Comman {
   className: string;

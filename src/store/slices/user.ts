@@ -21,6 +21,7 @@ export const userSlice = createSlice({
       state.dateOfBirth = action.payload.dateOfBirth;
       state.age = action.payload.age;
       state.mobileNumber = action.payload.mobileNumber;
+      state.role = action.payload.role;
       if (action.payload.role === "student") {
         state.subjects = action.payload.subjects;
         state.className = action.payload.className;
