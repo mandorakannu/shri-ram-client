@@ -1,25 +1,24 @@
 import axios from "axios";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useState, useRef } from "react";
 import { useVerifyUser } from "@hooks/useVerifyUser";
 import { Auth } from "@components/Auth";
-import { ITeachers } from "@customTypes/IUser";
 import { DialogModel } from "@components/ui/UserCreateModel";
 import { UserCreateContext } from "context/UserCreateContext";
-
+import { Loader } from "@components/Loader";
 export function AddTeachers() {
-  const modelContext = useContext(UserCreateContext);
-  console.log("value", modelContext?.value);
-  const [teacher, setTeacher] = useState<ITeachers>({
-    name: "",
-    motherName: "",
-    fatherName: "",
-    qualification: "",
-    dateOfBirth: "",
-    age: 0,
-    SubjectProfile: "",
-    mobileNumber: 0,
-    role: "teacher",
-  });
+  const [loader, setLoader] = useState<JSX.Element | string>("Submit");
+  //! Refs
+  const nameRef = useRef<HTMLInputElement>(null);
+  const motherNameRef = useRef<HTMLInputElement>(null);
+  const fatherNameRef = useRef<HTMLInputElement>(null);
+  const qualificationRef = useRef<HTMLInputElement>(null);
+  const dateOfBirthRef = useRef<HTMLInputElement>(null);
+  const ageRef = useRef<HTMLInputElement>(null);
+  const SubjectProfileRef = useRef<HTMLInputElement>(null);
+  const mobileNumberRef = useRef<HTMLInputElement>(null);
+  // ! Ref End
+
+  const modelContext = useContext(UserCreateContext); //! UserCreateContext is used to open the model
   const [openDialog, setOpenDialog] = useState({
     title: "",
     description: "",
@@ -30,24 +29,38 @@ export function AddTeachers() {
     password: "",
   });
   if (!useVerifyUser()) return <Auth />;
-  //   onChangeHandler function is used to set the value of the input field to the state
-  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) =>
-    setTeacher({ ...teacher, [event.target.name]: event.target.value });
 
   // onSubmitHandler function is used to submit the form to the server
   const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoader(<Loader />);
     try {
-      const {
-        name,
-        motherName,
-        fatherName,
-        qualification,
-        dateOfBirth,
-        age,
-        SubjectProfile,
-        mobileNumber,
-      } = teacher;
+      if (
+        nameRef.current?.value === "" ||
+        motherNameRef.current?.value === "" ||
+        fatherNameRef.current?.value === "" ||
+        qualificationRef.current?.value === "" ||
+        dateOfBirthRef.current?.value === "" ||
+        ageRef.current?.value === "" ||
+        SubjectProfileRef.current?.value === "" ||
+        mobileNumberRef.current?.value === ""
+      ) {
+        setOpenDialog({
+          title: "Fill All The Fields",
+          description: "Please fill all the fields",
+          isOpen: modelContext?.value as boolean,
+        });
+        return;
+      }
+      const name = nameRef.current?.value;
+      const motherName = motherNameRef.current?.value;
+      const fatherName = fatherNameRef.current?.value;
+      const qualification = qualificationRef.current?.value;
+      const dateOfBirth = dateOfBirthRef.current?.value;
+      const age = ageRef.current?.value;
+      const SubjectProfile = SubjectProfileRef.current?.value;
+      const mobileNumber = mobileNumberRef.current?.value;
+
       const res = await axios.post("/admin/addTeacher", {
         name,
         motherName,
@@ -83,6 +96,8 @@ export function AddTeachers() {
         description: "Server isn't responding, Kindly try again later",
         isOpen: modelContext?.value as boolean,
       });
+    } finally {
+      setLoader("Submit");
     }
   };
   return (
@@ -109,7 +124,7 @@ export function AddTeachers() {
               <input
                 type="text"
                 name="name"
-                onChange={onChangeHandler}
+                ref={nameRef}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
                 placeholder="Teacher name"
               />
@@ -119,9 +134,9 @@ export function AddTeachers() {
               <input
                 type="text"
                 name="motherName"
-                onChange={onChangeHandler}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
                 placeholder="Mother name"
+                ref={motherNameRef}
               />
             </div>
             <div className="flex flex-col">
@@ -129,9 +144,9 @@ export function AddTeachers() {
               <input
                 type="text"
                 name="fatherName"
-                onChange={onChangeHandler}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
                 placeholder="Father name"
+                ref={fatherNameRef}
               />
             </div>
             <div className="flex flex-col">
@@ -139,9 +154,9 @@ export function AddTeachers() {
               <input
                 type="text"
                 name="qualification"
-                onChange={onChangeHandler}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
                 placeholder="Qualification"
+                ref={qualificationRef}
               />
             </div>
             <div className="flex flex-col">
@@ -149,8 +164,8 @@ export function AddTeachers() {
               <input
                 type="date"
                 name="dateOfBirth"
-                onChange={onChangeHandler}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
+                ref={dateOfBirthRef}
               />
             </div>
             <div className="flex flex-col">
@@ -158,9 +173,9 @@ export function AddTeachers() {
               <input
                 type="number"
                 name="age"
-                onChange={onChangeHandler}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
                 placeholder="Age"
+                ref={ageRef}
               />
             </div>
             <div className="flex flex-col">
@@ -168,9 +183,9 @@ export function AddTeachers() {
               <input
                 type="text"
                 name="SubjectProfile"
-                onChange={onChangeHandler}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
                 placeholder="Write subject name"
+                ref={SubjectProfileRef}
               />
             </div>
             <div className="flex flex-col">
@@ -178,16 +193,16 @@ export function AddTeachers() {
               <input
                 type="number"
                 name="mobileNumber"
-                onChange={onChangeHandler}
                 className="border-2 border-gray-400 rounded p-2 outline-none"
                 placeholder="Enter mobile number"
+                ref={mobileNumberRef}
               />
             </div>
             <button
               type="submit"
-              className="bg-white outline outline-2 text-center hover:text-white hover:bg-blue-500 w-64 py-2 rounded my-10 cursor-pointer"
+              className="flex justify-center items-center bg-white outline outline-2 text-center hover:text-white hover:bg-blue-500 w-64 py-2 rounded my-10 cursor-pointer"
             >
-              Submit
+              {loader}
             </button>
           </form>
         </div>
