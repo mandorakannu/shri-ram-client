@@ -26,6 +26,7 @@ export default function Teachers() {
                   className="flex flex-col justify-center items-center"
                 >
                   <IKImage
+                    alt={`${items.text} Image`}
                     path={`${path}/${items.image}`}
                     className="w-20"
                     loading="lazy"

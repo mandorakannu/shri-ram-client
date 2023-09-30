@@ -25,6 +25,7 @@ export function Admins() {
           >
             <IKContext urlEndpoint={urlEndPoint}>
               <IKImage
+               alt={`${items.text} Image`}
                 path={`${path}/${items.image}`}
                 className="max-lg:w-10 w-32"
                 loading="lazy"

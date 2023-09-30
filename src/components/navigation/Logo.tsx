@@ -8,7 +8,7 @@ export const Logo = ({ classes }: { classes?: string }) => {
     <>
       <Link to="/">
         <IKContext urlEndpoint={urlEndPoint}>
-          <IKImage path={`${path}/logo`} className={`${classes} w-10 h-10`} />
+          <IKImage alt="Logo" path={`${path}/logo`} className={`${classes} w-10 h-10`} />
         </IKContext>
       </Link>
     </>

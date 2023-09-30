@@ -24,6 +24,7 @@ export function Team() {
                 data-aos-duration="2000"
               >
                 <IKImage
+                  alt={`${teacher.name} Image`}
                   path={`${images}/${teacher.image}`}
                   transformation={[{ width: "300", height: "400" }]}
                   className="rounded-t shadow-md"

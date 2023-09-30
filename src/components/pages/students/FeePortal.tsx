@@ -13,6 +13,7 @@ export function FeePortal() {
         <div className="flex flex-col justify-center items-center">
           <IKContext urlEndpoint={urlEndPoint}>
             <IKImage
+              alt="QR Code"
               path={`${images}/code.png`}
               className="w-64 bg-teal-100 border-2 border-stone-500  rounded px-2 py-1"
             />

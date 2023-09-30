@@ -170,7 +170,7 @@ export function FrontPage() {
                     </p>
                     <div className="flexRowCenter">
                       <IKImage
-                        alt="testimonial"
+                        alt="User testimonial Image"
                         path={`${images}/${item.image}`}
                         className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
                         data-aos="fade-up"

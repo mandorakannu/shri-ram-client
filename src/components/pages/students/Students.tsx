@@ -30,6 +30,7 @@ export const Students = () => {
                     className="flex flex-col justify-center items-center"
                   >
                     <IKImage
+                      alt={`${item.text} Image`}
                       path={`${path}/${item.imagePath}`}
                       className="w-20"
                       loading="lazy"
