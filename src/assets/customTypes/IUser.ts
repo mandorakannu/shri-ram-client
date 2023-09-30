@@ -1,5 +1,4 @@
 interface Comman {
-  id: string;
   name: string;
   motherName: string;
   fatherName: string;

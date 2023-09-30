@@ -2,17 +2,18 @@ import { useSelector } from "react-redux";
 import { RootState } from "@store/store";
 export function UserProfile() {
   const user = useSelector((state: RootState) => state.user);
-  const { name, motherName, fatherName, dateOfBirth, age, id, mobileNumber } =
+  const { name, motherName, fatherName, dateOfBirth, age, uniqueId, mobileNumber } =
     user;
   const firstName = name.split(" ")[0] || "Kannu";
   const lastName = name.split(" ")[1] || "Mandora";
+  const imageUrl = `https://ui-avatars.com/api/?name=${firstName}+${lastName}`;
   return (
     <div
       className="dcf-overflow-x-auto grid place-items-center h-[80dvh]"
       tabIndex={0}
     >
       <img
-        src={`https://ui-avatars.com/api/?name=${firstName}+${lastName}`}
+        src={imageUrl}
         alt={`${firstName} ${lastName} Avatar`}
         className="rounded-full w-32 h-w-32 shadow"
       />
@@ -46,7 +47,7 @@ export function UserProfile() {
           </tr>
           <tr>
             <th scope="row">Unique Id</th>
-            <td data-label="Your Details">{id}</td>
+            <td data-label="Your Details">{uniqueId}</td>
           </tr>
           <tr>
             <th scope="row">Mobile no.</th>

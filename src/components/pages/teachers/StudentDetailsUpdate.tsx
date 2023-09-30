@@ -24,7 +24,6 @@ export function StudentDetailsUpdate() {
       (student) => student.uniqueId === uniqueId
     );
     const updatedUser = {
-      id: findStudent?.id,
       uniqueId: findStudent?.uniqueId,
       name: findStudent?.name,
       fatherName: findStudent?.fatherName,
