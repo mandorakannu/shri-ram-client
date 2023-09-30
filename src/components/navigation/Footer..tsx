@@ -1,7 +1,6 @@
-import { MdFacebook } from "react-icons/md";
 import { RxInstagramLogo } from "react-icons/rx";
 import { BsTwitter } from "react-icons/bs";
-import { AiFillGithub } from "react-icons/ai";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import { Link } from "react-router-dom";
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,9 +9,9 @@ export const Footer = () => {
       <footer className="bg-white dark:bg-gray-900 border-t-2 border-blue-500">
         <div className="grid grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4">
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+            <h6 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
               Shri Ram College
-            </h2>
+            </h6>
             <ul className="text-gray-500 dark:text-gray-400">
               <li className="mb-4">
                 <Link to="/" className=" hover:underline">
@@ -37,9 +36,9 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+            <h6 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
               Help center
-            </h2>
+            </h6>
             <ul className="text-gray-500 dark:text-gray-400">
               <li className="mb-4">
                 <Link to="/" className="hover:underline">
@@ -64,9 +63,9 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+            <h6 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
               Legal
-            </h2>
+            </h6>
             <ul className="text-gray-500 dark:text-gray-400">
               <li className="mb-4">
                 <Link to="/" className="hover:underline">
@@ -86,9 +85,9 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+            <h6 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
               Download
-            </h2>
+            </h6>
             <ul className="text-gray-500 dark:text-gray-400">
               <li className="mb-4">
                 <Link to="/" className="hover:underline">
@@ -120,25 +119,25 @@ export const Footer = () => {
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center md:mt-0">
             <Link
-              to="/"
+              to="https://linkedin.com/in/mandorakannu"
               className="text-gray-400 hover:text-[color:var(--facebook)] dark:hover:text-white"
             >
-              <MdFacebook className="scale-125" />
+              <AiFillLinkedin className="scale-125" />
             </Link>
             <Link
-              to="/"
+              to="https://instagram.com/mandorakannu"
               className="text-gray-400 hover:text-[color:var(--instagram)] dark:hover:text-white"
             >
               <RxInstagramLogo className="scale-125" />
             </Link>
             <Link
-              to="/"
+              to="https://twitter.com/mandorakannu"
               className="text-gray-400 hover:text-[color:var(--twitter)] dark:hover:text-white"
             >
               <BsTwitter className="scale-125" />
             </Link>
             <Link
-              to="/"
+              to="https://github.com/mandorakannu"
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <AiFillGithub className="scale-125" />

@@ -47,9 +47,9 @@ export function FrontPage() {
       </main>
       <div className="flex flex-col">
         <div data-aos="fade-up">
-          <h1 className="dm-sans text-3xl font-medium title-font text-gray-900 mb-12 text-center  my-10">
+          <h2 className="dm-sans text-3xl font-medium title-font text-gray-900 mb-12 text-center  my-10">
             Learn Anything
-          </h1>
+          </h2>
         </div>
         <div className="flex flex-row max-lg:flex-col justify-center items-start">
           <div
@@ -57,7 +57,7 @@ export function FrontPage() {
             data-aos="fade-up"
           >
             <GiSecretBook className="text-5xl text-sky-400" />
-            <h1 className="text-center text-2xl font-bold">Online Courses</h1>
+            <span className="text-center text-2xl font-bold">Online Courses</span>
             <span className="my-5 px-3 text-gray-400 opacity-70">
               Online classes and training is the fastest way to develop your
               skills and career. Take a look at an overview of our online
@@ -69,9 +69,9 @@ export function FrontPage() {
             data-aos="fade-up"
           >
             <AiOutlineSafetyCertificate className="text-5xl text-sky-400" />
-            <h1 className="text-center text-2xl font-bold">
+            <span className="text-center text-2xl font-bold">
               Earn A Certificates
-            </h1>
+            </span>
             <span className="my-5 px-3 text-gray-400 opacity-70">
               This certificate allows you to prove that you are proficient in
               this subject. It may a great way to obtain a formal education or
@@ -83,9 +83,9 @@ export function FrontPage() {
             data-aos="fade-up"
           >
             <GiMaterialsScience className="text-5xl text-sky-400" />
-            <h1 className="text-center text-2xl font-bold">
+            <span className="text-center text-2xl font-bold">
               Learn with Expert
-            </h1>
+            </span>
             <span className="my-5 px-3 text-gray-400 opacity-70">
               Join us for an informative and fun experience. The expert will get
               to know each student's interests and then customize a course
@@ -118,9 +118,9 @@ export function FrontPage() {
         </div>
       </div>
       <div className="overflow-hidden">
-        <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center my-10">
+        <h3 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center my-10">
           All Courses
-        </h1>
+        </h3>
         <div className="flex flex-row max-sm:flex-col justify-evenly items-center my-10 gap-3">
           <Link
             data-aos="fade-left"
@@ -128,9 +128,9 @@ export function FrontPage() {
             className="flex justify-center items-center p-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md text-blue-500"
           >
             <AiFillHtml5 className="w-20 scale-[3] px-1 text-orange-500" />
-            <h5 className="mb-2 text-2xl font-bold tracking-tight">
+            <span className="mb-2 text-2xl font-bold tracking-tight">
               HTML, CSS, and Javascript for Web Developers
-            </h5>
+            </span>
           </Link>
           <Link
             data-aos="fade-up"
@@ -138,9 +138,9 @@ export function FrontPage() {
             className="flex justify-center items-center p-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md text-blue-500"
           >
             <SiReact className="w-20 scale-[3] px-1 text-blue-700" />
-            <h5 className="mb-2 text-2xl font-bold tracking-tight">
+            <span className="mb-2 text-2xl font-bold tracking-tight">
               Learn React.Js for Web Developers
-            </h5>
+            </span>
           </Link>
           <Link
             data-aos="fade-right"
@@ -148,9 +148,9 @@ export function FrontPage() {
             className="flex justify-center items-center p-3 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md text-blue-500"
           >
             <HiOutlineCode className="w-20 scale-[3] px-1 text-black" />
-            <h5 className="mb-2 text-2xl font-bold tracking-tight">
+            <span className="mb-2 text-2xl font-bold tracking-tight">
               Learn Coding with professionals
-            </h5>
+            </span>
           </Link>
         </div>
       </div>

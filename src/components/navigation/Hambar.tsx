@@ -21,7 +21,7 @@ export const Hambar = () => {
       <header className="lg:hidden flex justify-around items-center bg-blue-500 border-b-2 border-black h-16 z-50 sticky top-0">
         <Logo />
         <Link to="/">
-          <h1 className="text-white font-semibold">Shri Ram College</h1>
+          <span className="text-white font-semibold">Shri Ram College</span>
         </Link>
         <RxHamburgerMenu
           className="flex flex-col scale-[2] bg-blue-200 rounded p-1"
