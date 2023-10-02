@@ -10,6 +10,7 @@ import {
   CommanRoutes,
 } from "@components/Router";
 import { Hambar } from "@components/navigation/Hambar";
+import { Analytics } from "@vercel/analytics/react";
 
 export function App() {
   AOS.init({ once: true });
@@ -22,6 +23,7 @@ export function App() {
       <StudentRoutes />
       <TeacherRoutes />
       <AdminRoutes />
+      <Analytics />
       <Footer />
     </>
   );
